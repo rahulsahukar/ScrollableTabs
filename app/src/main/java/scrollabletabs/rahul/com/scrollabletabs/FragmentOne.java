@@ -80,13 +80,17 @@ public class FragmentOne extends Fragment {
 
                 rv.getLocationInWindow(loc);
                 float ry = loc[1];
-                if(dy>0 && ry>=ty_y) {
-                    float translate = ((ry-dy)<=ty?(ry-dy):ty);
-                    rv.setTranslationY(-translate);
+                if(dy>0) {
+                    if(ry>=ty_y){
+                        float translate = ((ry-dy)<=ty_y?(ry-ty_y):dy);
+                        rv.setTranslationY(-translate);
+                    }
                 }
-                else if( dy<0 && ry<=ty_y){
-                    float translate = ((ry-dy)>=ty?ty:(ry-dy));
-                    rv.setTranslationY(translate);
+                else if( dy<0 ){
+                    if(ry<=ty_y) {
+                        float translate = ((ry - dy) >= ty ? (ty-ry) : dy);
+                        rv.setTranslationY(translate);
+                    }
                 }
 
                 rv.getLocationInWindow(loc);
